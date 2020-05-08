@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="An Awesome Discord Multipurpose Bot with 250+ Commands."/>
+    <meta name="google-site-verification" content="akGL-7hsJUQg7m48AZNBVlzKr1elUlUVpbG4vy6mxlU" />
+
+    <title>Xtal — Dashboard</title>
+    <script>
+    if (location.protocol != 'https:') {
+     location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+    }
+    </script>
+
+    <link rel="shortcut icon" href="https://assets.xtal.me/logo-with-glow-square.png" />
+    <link rel="stylesheet" type="text/css" href="/stylesheet.css">
+</head>
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <div class="page-content">
+    <center><br><br>
+    <h1><u>Your Information</u></h1><br>
+    <h2>
+      • Username: <b><%- user.username %></b><br>
+      • Discrim: <b><%- user.discriminator %></b><br>
+      • ID: <b><%- user.id %></b><br>
+    </h2><br>
+    <h1>Choose to Manage a Server</h1><br>
+    <h2>
+        <div class="guild-container">
+            <div class="serv-container">
+        <% guilds.forEach((guild) => { %>   
+             <div title="<%= guild.name %>">
+            <a href="/manage/<%= guild.id %>">
+        <% if (guild.icon) { %>
+            <img src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>.png?size=2048" width="70px" height="70px" class="guild-icon" />
+        <% } else { %>
+            <canvas class="guild-icon" id="<%= guild.name.replace(/\w+/g, name => name[0]).replace(/\s/g, '') %>" width="70px" height="70px"></canvas>
+    <script>
+      function createIcon() {
+        const nameAcronym = document.getElementById("<%= guild.name.replace(/\w+/g, name => name[0]).replace(/\s/g, '')  %>").getContext('2d');
+        nameAcronym.font = '30px Arial';
+        nameAcronym.textAlign = "center";
+        nameAcronym.fillStyle = "white";
+        nameAcronym.fillText("<%= guild.name.replace(/\w+/g, name => name[0]).replace(/\s/g, '')  %>", 25, 35);
+      }
+      createIcon();
+    </script>
+          <%}%>
+           </a>
+          </div>
+    <%});%>
+        </div>
+      </div>
+    </h2>
+    </center>
+    </div>
+  <footer>
+		<% include ./partials/footer %>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,16 @@
+.hgignore
+node_modules
+.c9
+.DS_Store
+Thumbs.db
+data/
+.vscode
+data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+out/
+*.sqlite # Disabled Database Sharing
+*.database
+*.logs
+*.png

@@ -1,0 +1,28 @@
+const fetch = require('node-fetch')
+const { RichEmbed } = require("discord.js");
+
+exports.run = async (xtal, message, args, colors) => {
+ 
+  const { url } = await fetch(`https://nekos.life/api/v2/img/smug`).then(response => response.json());
+  
+  let embed = new RichEmbed()
+    .setColor(colors.pink)
+    .setAuthor(`${message.author.username} Smugs.`, message.author.avatarURL)
+    .setFooter(xtal.user.username, xtal.user.avatarURL)
+    .setImage(url)
+    .setTimestamp();     
+   message.channel.send({ embed });
+
+};
+
+exports.help = {
+  name: "smug",
+  aliases: []
+};
+
+exports.conf = {
+  usage: "smug @user",
+  aliases: "None.",
+  description: "Smug like a Pro",
+  category: "Reactions"
+};

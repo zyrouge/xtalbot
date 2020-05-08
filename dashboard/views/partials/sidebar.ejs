@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+#sidebar, #content {
+  height: 100%;
+  overflow:auto;
+}
+
+#sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background:white;
+  width: 30%;
+  box-shadow: 2px 0 4px rgba(0,0,0,0.5);
+  transition: width .35s;
+}
+
+#sidebar.collapsed {
+  width: 0;
+}
+
+button {
+  width: 34px;
+  height: 30px;
+  border-radius: 30%;
+  border:none;
+  outline:none;
+  background: #23272A;
+  margin: 20px;
+  cursor:pointer;
+  color: white;
+}
+
+#closer {
+  float:right;
+}
+
+h3 {
+  text-align:center;
+  color:white;
+  font-family: sans-serif;
+}
+
+.sidelinks a {
+  padding: 30px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 13px;
+  color: #111;
+  display: block;
+  transition: 0.3s;
+}
+</style>
+<button title="Toggle sidebar"><i class="fa fa-gear" style="font-size:20px"></i></button>
+<div id="sidebar" class="collapsed">
+  <button id="closer" title="Close sidebar"><i class="fa fa-close" style="font-size:20px"></i></button>
+  <div class="sidelinks">
+  <a href="/manage/<%= guild.id %>/">Basic</a>
+  <a href="/manage/<%= guild.id %>/welcomer">Welcomer</a>
+  <a href="/manage/<%= guild.id %>/level">Leveling</a>
+  </div>
+</div>
+
+<script>
+const buttons = document.querySelectorAll("button");
+buttons.forEach(button =>
+    button.addEventListener("click", _ => {
+    document.getElementById("sidebar").classList.toggle("collapsed");
+  })
+);
+</script>

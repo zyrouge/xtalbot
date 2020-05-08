@@ -1,0 +1,16 @@
+{
+    "ownerID": ["521007613475946496"],
+    "port": 3000,
+    "clientId": "614476694853779457",
+    "clientSecret": "kqNRlCdUMadC37qyNycGfsKukaULDM9a",
+    "scopes": ["identify", "guilds"],
+    "redirectUri": "https://dashboard.xtal.me/login",
+    "owners": ["521007613475946496"],
+    "version": "1.7",
+    "web": "xtal.me",
+    "weburl": "https://dashboard.xtal.me",
+    "server": "https://discord.gg/vWpmfD5",
+    "avatar": "https://cdn.glitch.com/221a0af6-6816-4910-8a4a-306d1a40ec04%2Fxtal.png?v=1569889228540",
+    "footer": "https://cdn.glitch.com/221a0af6-6816-4910-8a4a-306d1a40ec04%2Fxtalfooter.png?v=1573293266574",
+    "invite": "https://discordapp.com/api/oauth2/authorize?client_id=614476694853779457&permissions=2146958847&redirect_uri=https%3A%2F%2Fdashboard.xtal.me%2Flogin&response_type=code&scope=bot%20guilds.join"
+}
