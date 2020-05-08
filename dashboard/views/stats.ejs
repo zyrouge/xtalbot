@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="An Awesome Discord Multipurpose Bot from Moderation to Music."/>
+
+    <title>Xtal — Dashboard</title>
+<script>
+if (location.protocol != 'https:') {
+ location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+}
+</script>
+
+    <link rel="shortcut icon" href="https://assets.xtal.me/logo-with-glow-square.png" />
+    <link rel="stylesheet" type="text/css" href="/stylesheet.css">
+</head>
+<body>
+    <%- include('partials/navbar.ejs') %>
+
+    <div class="page-content">
+      <h1><u>Xtal Stats</u></h1><br>
+      <h2>
+        • Total Servers: <b><%= xtal.guilds.size %></b><br>
+        • Total Channels: <b><%= xtal.channels.size %></b><br>
+        • Total Users: <b><%= xtal.users.size %></b><br>
+        • Connected VC(s): <b><%= xtal.voice.connections.size %></b><br>
+        • Uptime: <b><%= uptime %></b><br>
+        • Connection Status: <b><%- connection %></b><br>
+        • Version Status: <b><%- version %></b><br>
+      </h2>
+    </div>
+  <footer>
+		<% include ./partials/footer %>
+	</footer>
+</body>
+</html>

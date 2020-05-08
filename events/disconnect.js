@@ -1,0 +1,1 @@
+module.exports = (xtal) => xtal.login(process.env.TOKEN);

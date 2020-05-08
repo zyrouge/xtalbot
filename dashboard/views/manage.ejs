@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="An Awesome Discord Multipurpose Bot with 250+ Commands."/>
+    <meta name="google-site-verification" content="akGL-7hsJUQg7m48AZNBVlzKr1elUlUVpbG4vy6mxlU" />
+
+    <title>Xtal — Dashboard</title>
+<script>
+if(location.protocol != 'https:') location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+</script>
+
+    <link rel="shortcut icon" href="https://assets.xtal.me/logo-with-glow-square.png" />
+    <link rel="stylesheet" type="text/css" href="/stylesheet.css">
+</head>
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <%- include('partials/sidebar.ejs') %>
+    <div class="page-content">
+    <center><br><br>
+    <h1><u>Information</u></h1><br>
+    <h2>
+      • Name: <b><%= guild.name %></b><br>
+      • ID: <b><%= guild.id %></b><br>
+      • Member Count: <b><%= guild.memberCount %></b><br>
+      • Text Channels: <b><%= guild.channels.filter(c => c.type === 'text').size %></b><br>
+      • Voice Channels: <b><%= guild.channels.filter(c => c.type === 'voice').size %></b><br>
+      • Roles Count: <b><%= guild.roles.size %></b><br>
+      • Region: <b><%= guild.region %></b><br>
+      • Created Date: <b><%= guild.createdAt.toUTCString() %></b><br>
+    </h2><br><hr>
+    <!-- Prefix -->
+      <form role="form" action="/manage/<%= guild.id %>/" method="POST">
+          <div class="box">
+            <h1>Basic Configuration</h1>
+            <h2>Prefix</h2>
+            <input type="text" name="prefix" placeholder="<%= settings.prefix %>">
+            <br>
+            <button type="submit" class="button buttonnormal">Save</button>
+            <br><hr><br>
+            <h2>Nickname</h2>
+            <input type="text" name="nick" placeholder="<%= (guild.me.nickname !== null) ? (guild.me.nickname) : (guild.me.user.username) %>">
+            <br>
+            <button type="submit" class="button buttonnormal">Save</button>
+            <br>
+          </div><br>
+          <hr><br><div class="modhead">
+        Modules</div>
+            </h1><br>
+          <div id="flex-container">
+            <div class="flex-item">
+            <h2>Moderator Only</h2>
+                <label class="switch">
+                <% if(settings.modonly == true) { %>
+                    <input type="checkbox" name="modonly" checked>
+                    <span class="slider round"></span>
+                <% } else { %>
+                    <input type="checkbox" name="modonly">
+                    <span class="slider round"></span>
+                <% } %>
+                </label>
+                <br><br>
+                <button type="submit" class="button buttonnormal">Save</button>
+            </div>
+            <div class="flex-item">
+            <h2>Moderator Only Roles</h2>
+                  <select class="form-control" name="modonlyrole">
+                  <% if(settings.modonlyrole && guild.roles.get(settings.modonlyrole)){ %>
+                    <option selected="selected"><%= guild.roles.get(settings.modonlyrole).name %></option>
+                    <% guild.roles.filter((role) => role.id !== settings.modonlyrole && role.name !== "@everyone").forEach((role) => { %>
+                        <option><%= role.name %></option>
+                    <% }); %>
+                        <option>No Role</option>
+                  <% } else { %>
+                    <option selected="selected">No Role</option>
+                    <% guild.roles.filter((role) => role.name !== "@everyone").forEach((role) => { %>
+                        <option><%= role.name %></option>
+                    <% }); %>
+                <% } %>
+                </select>
+                <br><br>
+                <button type="submit" class="button buttonnormal">Save</button>
+            </div>
+            <div class="flex-item">
+            <h2>Moderator Only Permission</h2>
+                  <select class="form-control" name="modonlyperm">
+                  <% if(settings.modonlyperm){ %>
+                    <option selected="selected"><%= settings.modonlyperm %></option>
+                    <% settings.allmodperms.filter((x) => x !== settings.modonlyperm).forEach((x) => { %>
+                        <option><%= x %></option>
+                    <% }); %>
+                        <option>No Permission</option>
+                  <% } else { %>
+                    <option selected="selected">No Permission</option>
+                    <% settings.allmodperms.forEach((x) => { %>
+                        <option><%= x %></option>
+                    <% }); %>
+                <% } %>
+                </select>
+                <br><br>
+                <button type="submit" class="button buttonnormal">Save</button>
+            </div>
+          </div>
+          <br>
+      </form>
+    </center>
+    </div>
+  <footer>
+		<% include ./partials/footer %>
+	</footer>
+</body>
+</html>
